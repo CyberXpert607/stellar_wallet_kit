@@ -39,7 +39,7 @@ class StellarAddressChip extends ConsumerWidget {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Address QR'),
-        content: QrImage(data: address, size: 200),
+        content: QrImageView(data: address, size: 200),
         actions: [
           TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Close')),
         ],
@@ -49,6 +49,6 @@ class StellarAddressChip extends ConsumerWidget {
 
   String _truncate(String address) {
     if (address.length <= 12) return address;
-    return '${address.substring(0, 6)}…${address.substring(address.length - 4)}';
+    return '${address.substring(0, 6)}…${address.substring(address.length - 3)}';
   }
 }
