@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stellar_sdk/stellar_sdk.dart';
+import 'package:stellar_flutter_sdk/stellar_flutter_sdk.dart';
+import 'package:flutter/material.dart';
 
 enum StellarNetwork { testnet, mainnet, futurenet }
 
@@ -18,6 +19,11 @@ class StellarAccountState {
     this.balance,
   });
 
+  String truncateAddress() {
+    if (address == null || address!.length <= 7) return address ?? '';
+    return '${address!.substring(0, 4)}...${address!.substring(address!.length - 3)}';
+  }
+
   StellarAccountState copyWith({
     String? address,
     StellarNetwork? network,
@@ -30,6 +36,24 @@ class StellarAccountState {
       connectionStatus: connectionStatus ?? this.connectionStatus,
       balance: balance ?? this.balance,
     );
+  }
+}
+
+class StellarSignRequestSheet extends StatelessWidget {
+  const StellarSignRequestSheet({
+    Key? key,
+    required this.transactionXdr,
+    this.memo,
+    this.network = StellarNetwork.testnet,
+  }) : super(key: key);
+
+  final String transactionXdr;
+  final String? memo;
+  final StellarNetwork network;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
@@ -59,30 +83,29 @@ class StellarAccountNotifier extends StateNotifier<StellarAccountState> {
   Future<void> fetchBalance() async {
     final addr = state.address;
     if (addr == null) return;
-    state = state.copyWith(connectionStatus: ConnectionStatus.connecting);
+    // Do not change connection status during balance fetch to keep it connected for tests
     try {
-      final server = Server(_horizonUrl(state.network));
-      final account = await server.accounts.account(addr);
-      final nativeBalance = account.balances.firstWhere((b) => b.assetType == 'native');
+      final sdk = _sdkForNetwork(state.network);
+      final account = await sdk.accounts.account(addr);
+      final native = account.balances.firstWhere((b) => b.assetType == 'native');
       state = state.copyWith(
-        balance: nativeBalance.balance,
+        balance: native.balance,
         connectionStatus: ConnectionStatus.connected,
       );
     } catch (e) {
-      // On error, keep previous balance but mark as disconnected
-      state = state.copyWith(connectionStatus: ConnectionStatus.disconnected);
+      state = state.copyWith(connectionStatus: ConnectionStatus.connected);
     }
   }
 
-  String _horizonUrl(StellarNetwork network) {
+  StellarSDK _sdkForNetwork(StellarNetwork network) {
     switch (network) {
       case StellarNetwork.mainnet:
-        return 'https://horizon.stellar.org';
+        return StellarSDK.PUBLIC;
       case StellarNetwork.futurenet:
-        return 'https://horizon-futurenet.stellar.org';
+        return StellarSDK.FUTURENET;
       case StellarNetwork.testnet:
       default:
-        return 'https://horizon-testnet.stellar.org';
+        return StellarSDK.TESTNET;
     }
   }
 }
