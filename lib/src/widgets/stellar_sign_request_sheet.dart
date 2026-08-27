@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stellar_wallet_kit/stellar_wallet_kit.dart';
-import 'package:stellar_wallet_kit/lib/src/services/freighter_service.dart';
+import 'package:stellar_wallet_kit/src/services/freighter_service.dart';
 
 /// Bottom sheet that shows transaction details and triggers signing via Freighter.
-class StellarSignRequestSheet extends ConsumerWidget {
+class StellarSignRequestSheet extends StatelessWidget {
   const StellarSignRequestSheet({
     Key? key,
     required this.transactionXdr,
     this.memo,
+    this.network = StellarNetwork.testnet,
   }) : super(key: key);
 
-  final String transactionXdr; // base64 XDR string
+  final String transactionXdr;
   final String? memo;
+  final StellarNetwork network;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final network = ref.watch(stellarAccountProvider.select((s) => s.network));
+  Widget build(BuildContext context) {
     final service = FreighterService();
 
     return Padding(
