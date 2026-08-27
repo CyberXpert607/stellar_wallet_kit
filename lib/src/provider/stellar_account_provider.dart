@@ -39,23 +39,6 @@ class StellarAccountState {
   }
 }
 
-class StellarSignRequestSheet extends StatelessWidget {
-  const StellarSignRequestSheet({
-    Key? key,
-    required this.transactionXdr,
-    this.memo,
-    this.network = StellarNetwork.testnet,
-  }) : super(key: key);
-
-  final String transactionXdr;
-  final String? memo;
-  final StellarNetwork network;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
 
 class StellarAccountNotifier extends StateNotifier<StellarAccountState> {
   StellarAccountNotifier() : super(const StellarAccountState());
