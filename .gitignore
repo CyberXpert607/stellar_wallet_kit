@@ -1,0 +1,34 @@
+### Flutter .gitignore
+# Misc
+*.class
+*.log
+*.swp
+*.lock
+*.DS_Store
+# Flutter/Dart
+**/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.pub-cache/
+.pub-root/
+# Android
+**/android/**/build/
+**/android/.gradle/
+**/android/app/build/
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Runner.xcworkspace/
+**/ios/Flutter/App.framework
+# Web
+**/web/**/build/
+# VS Code
+.vscode/
+# IntelliJ
+.idea/
+*.iml
