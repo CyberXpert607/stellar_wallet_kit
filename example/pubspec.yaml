@@ -1,0 +1,22 @@
+name: example
+description: Example app for stellar_wallet_kit
+publish_to: "none"
+
+environment:
+  sdk: '>=2.19.0 <4.0.0'
+  flutter: '>=3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.0.0
+  hooks_riverpod: ^2.0.0
+  stellar_wallet_kit:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

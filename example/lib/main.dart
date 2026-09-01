@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stellar_wallet_kit/stellar_wallet_kit.dart';
+import 'package:example/home_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: StellarWalletDemoApp()));

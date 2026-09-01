@@ -48,11 +48,11 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-## Example App Flow
-The example app (`/example`) shows a simple **Pay** screen:
-1. **Connect** – taps `StellarConnectButton` to open Freighter via SEP‑0007.
-2. **Balance** – once connected, `StellarBalanceDisplay` shows the testnet balance.
-3. **Pay** – a dummy transaction button opens `StellarSignRequestSheet` to sign a test payment.
+## Known Limitations
+
+- The **StellarSignRequestSheet** uses SEP‑0007 deep‑link URLs to launch the Freighter wallet. This approach works on mobile devices or desktop wallet apps that can handle the custom URL scheme, but it does **not** function in web browsers (e.g., Chrome) because browser extensions cannot intercept SEP‑0007 links. When running the example on the web, the sheet will show a "could not launch Freighter" message, which is expected.
+- To test the full sign‑flow, run the example on a real mobile device or emulator with the Freighter (or compatible) wallet installed.
+
 
 ## Roadmap
 - Albedo wallet support

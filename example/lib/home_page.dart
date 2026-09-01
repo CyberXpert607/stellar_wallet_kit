@@ -13,7 +13,7 @@ class HomePage extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
+          children: [
             StellarConnectButton(),
             SizedBox(height: 12),
             StellarAddressChip(),
@@ -38,7 +38,7 @@ class HomePage extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) => const StellarSignRequestSheet(
+      builder: (_) => StellarSignRequestSheet(
         transactionXdr: dummyXdr,
         memo: 'Demo payment',
       ),
