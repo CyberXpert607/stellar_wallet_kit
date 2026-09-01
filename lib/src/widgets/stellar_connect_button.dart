@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stellar_wallet_kit/stellar_wallet_kit.dart';
-import 'package:stellar_wallet_kit/src/services/freighter_service.dart';
+
 
 /// A button that initiates connection to the Freighter wallet.
 /// Shows "Connect" when not connected, otherwise displays a truncated address.

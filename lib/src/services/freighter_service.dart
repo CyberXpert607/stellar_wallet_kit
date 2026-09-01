@@ -1,5 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart';
+
 
 /// Service handling Freighter deep‑link integration (SEP‑0007).
 /// It builds a signing URL and launches it via [url_launcher].

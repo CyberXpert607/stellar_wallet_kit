@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stellar_flutter_sdk/stellar_flutter_sdk.dart';
-import 'package:flutter/material.dart';
 
 enum StellarNetwork { testnet, mainnet, futurenet }
 
