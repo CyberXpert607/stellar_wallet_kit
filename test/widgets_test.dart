@@ -69,6 +69,28 @@ void main() {
     });
   });
 
+  group('StellarConnectButton', () {
+    testWidgets('shows Freighter and xBull options when disconnected', (tester) async {
+      final container = ProviderContainer(overrides: [
+        stellarAccountProvider.overrideWith((ref) => StellarAccountNotifier())
+      ]);
+      await tester.pumpWidget(
+        ProviderScope(
+          parent: container,
+          child: const MaterialApp(home: Scaffold(body: StellarConnectButton())),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Connect Wallet'), findsOneWidget);
+
+      await tester.tap(find.text('Connect Wallet'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Freighter'), findsOneWidget);
+      expect(find.text('xBull'), findsOneWidget);
+    });
+  });
+
   group('StellarSignRequestSheet', () {
     testWidgets('renders without crashing', (tester) async {
       await tester.pumpWidget(
