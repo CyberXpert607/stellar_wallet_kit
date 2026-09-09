@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
 
 - The **StellarSignRequestSheet** uses SEP‑0007 deep‑link URLs to launch the Freighter wallet. This approach works on mobile devices or desktop wallet apps that can handle the custom URL scheme, but it does **not** function in web browsers (e.g., Chrome) because browser extensions cannot intercept SEP‑0007 links. When running the example on the web, the sheet will show a "could not launch Freighter" message, which is expected.
 - To test the full sign‑flow, run the example on a real mobile device or emulator with the Freighter (or compatible) wallet installed.
+- Per SEP‑0007, the `callback` parameter must be prefixed with `url:` for a wallet to recognize it as a callback target, and the wallet returns the signed XDR via an HTTPS `POST` to that URL — not by re‑opening the calling app's custom URL scheme. This package does not ship an HTTPS callback receiver, so a wallet that honors the `callback` parameter as specified will not hand the signed XDR back into the app directly; omit the callback (not currently configurable) or host your own callback endpoint if you need the signed XDR returned programmatically. Round‑trip behavior still needs to be confirmed against a real SEP‑0007‑compatible wallet.
 
 
 ## Roadmap
