@@ -18,7 +18,7 @@ class FreighterService {
       queryParameters: {
         'xdr': xdr,
         'network': network,
-        'callback': '${callbackScheme}://callback',
+        'callback': 'url:${callbackScheme}://callback',
       },
     );
     return uri.toString();
