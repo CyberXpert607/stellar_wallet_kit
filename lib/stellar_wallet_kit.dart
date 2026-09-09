@@ -8,3 +8,4 @@ export 'src/widgets/stellar_balance_display.dart';
 export 'src/widgets/stellar_network_switcher.dart';
 export 'src/widgets/stellar_connect_button.dart';
 export 'src/widgets/stellar_sign_request_sheet.dart';
+export 'src/services/transaction_builder.dart';
