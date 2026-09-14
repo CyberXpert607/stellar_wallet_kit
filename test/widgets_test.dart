@@ -13,9 +13,10 @@ void main() {
           return notifier;
         })
       ]);
+      addTearDown(container.dispose);
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: const MaterialApp(home: Scaffold(body: StellarAddressChip())),
         ),
       );
@@ -38,9 +39,10 @@ void main() {
           return notifier;
         })
       ]);
+      addTearDown(container.dispose);
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: const MaterialApp(home: Scaffold(body: StellarBalanceDisplay())),
         ),
       );
@@ -58,9 +60,10 @@ void main() {
           return notifier;
         })
       ]);
+      addTearDown(container.dispose);
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: const MaterialApp(home: Scaffold(body: StellarNetworkSwitcher())),
         ),
       );
@@ -74,9 +77,10 @@ void main() {
       final container = ProviderContainer(overrides: [
         stellarAccountProvider.overrideWith((ref) => StellarAccountNotifier())
       ]);
+      addTearDown(container.dispose);
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: const MaterialApp(home: Scaffold(body: StellarConnectButton())),
         ),
       );
